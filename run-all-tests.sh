@@ -1,0 +1,1 @@
+cd car-rental-api/ && mvn -Dtest="com.infor.car.api.**" test
