@@ -86,6 +86,15 @@ public class BookingServiceTest {
     }
 
     @Test
+    public void findAllBookingsBetweenDateTime_EntityNotFoundException() {
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () ->
+                bookingService.findAllBookingsBetweenDateTime(LocalDateTime.parse("2020-06-01 16:00:00", AppConstants.getFormatter()),
+                        LocalDateTime.parse("2020-07-01 07:00:00", AppConstants.getFormatter())));
+        assertTrue(exception.getMessage().equals("There are no available bookings between [2020-06-01 16:00:00] and [2020-07-01 07:00:00]"));
+        assertThat(exception.getErrorCode(), is(ErrorCode.RESOURCE_NOT_FOUND));
+    }
+
+    @Test
     public void findAllBookingsBetweenDateTimePerHour() {
         Map<String, Integer> mHours = bookingService.findAllBookingsBetweenDateTimePerHour(LocalDateTime.parse("2020-07-29 16:00:00", AppConstants.getFormatter()),
                 LocalDateTime.parse("2020-08-10 07:00:00", AppConstants.getFormatter()));

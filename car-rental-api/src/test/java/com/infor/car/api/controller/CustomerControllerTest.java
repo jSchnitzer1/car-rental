@@ -3,7 +3,9 @@ package com.infor.car.api.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.infor.car.api.dto.CustomerDto;
+import com.infor.car.api.exception.ErrorMessage;
 import com.infor.car.api.model.Customer;
 import com.infor.car.api.service.CustomerService;
 import org.junit.Before;
@@ -51,10 +53,14 @@ public class CustomerControllerTest {
     @MockBean
     private ModelMapper modelMapper;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     private List<Customer> initCustomers;
 
     @Before
     public void setup() {
+        objectMapper.registerModule(new JavaTimeModule());
         initCustomers = List.of(
                 new Customer(1L, "Jane", "Doe", 198101021100L),
                 new Customer(2L, "John", "Doe", 199105072211L)
@@ -91,7 +97,7 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void findCustomerById_RUNTIME_ERROR() throws Exception {
+    public void findCustomerById_INVALID_ARGUMENT() throws Exception {
         when(customerServiceMock.findById(any())).thenReturn(initCustomers.get(1));
 
         var result = mockMvc.perform(get(apiUrlBase + "/customers/invalid")
@@ -100,9 +106,8 @@ public class CustomerControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errorCode", is("INVALID_ARGUMENT")));
 
-                Boolean isCorrectErrorMessage = result.andReturn().getResponse().getContentAsString()
-                        .contains("\"message\":\"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'");
-                assertTrue(isCorrectErrorMessage);
+        ErrorMessage errorMessage = objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), ErrorMessage.class);
+        assertTrue(errorMessage.getMessage().contains("Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'"));
     }
 
     @Test

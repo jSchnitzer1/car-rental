@@ -90,15 +90,7 @@ public class AppRunner implements CommandLineRunner {
                 bookingService.findAllBookingsBetweenDateTimePerHour("20200806160000", "20200807110000")
                         .doOnError(e -> AppConstants.logError(e, "displaying booking"))
                         .subscribe(m -> {
-                            LOGGER.info("Display total hours.....");
-                            ObjectMapper mapper = new ObjectMapper();
-                            try {
-                                Map<String, Integer> hours = mapper.readValue(m, Map.class);
-                                hours.entrySet().forEach(e -> LOGGER.info("Hour: " + e.getKey() + " No. of reservations: " + e.getValue() + " Performed by [Thread] " + Thread.currentThread().getName()));
-                            } catch (IOException e) {
-                                LOGGER.error("Error in mapping hours {}", e.getMessage());
-                            }
-
+                            m.entrySet().forEach(e -> LOGGER.info("Hour: " + e.getKey() + " No. of reservations: " + e.getValue() + " Performed by [Thread] " + Thread.currentThread().getName()));
                         });
                 AppConstants.simulateDelayedProcessing(8000);
             }
@@ -114,14 +106,7 @@ public class AppRunner implements CommandLineRunner {
                         .doOnError(e -> AppConstants.logError(e, "displaying booking"))
                         .subscribe(m -> {
                             LOGGER.info("Display total payments.....");
-                            ObjectMapper mapper = new ObjectMapper();
-                            try {
-                                Map<String, String> hours = mapper.readValue(m, Map.class);
-                                hours.entrySet().forEach(e -> LOGGER.info("Payment for Car: " + e.getKey() + " Total payment is: " + e.getValue() + " Performed by [Thread] " + Thread.currentThread().getName()));
-                            } catch (IOException e) {
-                                LOGGER.error("Error in total payments {}", e.getMessage());
-                            }
-
+                            m.entrySet().forEach(e -> LOGGER.info("Payment for Car: " + e.getKey() + " Total payment is: " + e.getValue() + " Performed by [Thread] " + Thread.currentThread().getName()));
                         });
                 AppConstants.simulateDelayedProcessing(8000);
             }

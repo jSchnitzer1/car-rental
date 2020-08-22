@@ -72,8 +72,8 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> createCustomer(@RequestBody @Valid @NotNull CarDto car) {
-        LOGGER.info("Creating customer {}", car.getPlateNum());
+    public ResponseEntity<Car> createCar(@RequestBody @Valid @NotNull CarDto car) {
+        LOGGER.info("Creating car {}", car.getPlateNum());
         car.setModel(car.getModel().toUpperCase());
         return new ResponseEntity<>(carService.create(modelMapper.map(car, Car.class)),
                 HttpStatus.CREATED);

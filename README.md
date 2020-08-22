@@ -1,7 +1,7 @@
-# Robotics
-Jayway Robotics Manager
+# Car Rental Manager
+Infor Car Rental Manager - With System Testing
 
-The assignment technical file is 
+The assignment technical file is [here](https://github.com/jSchnitzer1/car-rental/blob/master/Assignment.pdf "Assignment file")
 
 ## Requirements
 (Open) JDK 14
@@ -66,15 +66,72 @@ contains
 
 
 ### Unit Testing
-There are 27 unit tests distributed into three testing packages:
+There are **45 unit tests** distributed into three testing packages:
 
-#### Controller Testing
-- CustomerControllerTest: which tests the API correctness using MockMvc. It also tests exception handling. 
+#### Controller (API) Testing
+- CustomerControllerTest: which tests the ```/customers``` API correctness using MockMvc. It also tests different scenarios and exception handling. 
+- CarControllerTest: which tests all ```/cars``` endpoints correctness including object creation using MockMvc. It also tests different scenarios and exception handling. 
+- CarControllerTest: which tests different report generation in ```/bookings``` endpoints and their correctness. Furthermore, it tests creating a new booking using MockMvc. It also tests different scenarios and exception handling. 
 
+#### Repository Testing
+Tests the H2 database and HQL queries. 
+- CustomerRepositoryTest
+- CarRepositoryTest
+- BookingRepositoryTest
 
+#### Services Testing
+This package tests all business logic of the renting car system. 
+- CustomerServiceTest
+- CarServiceTest
+- BookingServiceTest
 
+### system-test (System Test)
+The system test uses WebClient (in Spring Boot 5) as a reactive, non-blocking interface to call ```car-rental-api``` endpoints so that we can ensure there is no blocking occurred while executing the code.
 
+Furthermore, the project uses concurrent method calls (as tasks) using ```ExecutorService``` to simulate real world scenarios 
 
+## Run the application
+Make sure you are in the project home folder path ``` car-rental/ ```
 
+### Running Backend Car API
+```
+$ sh run-backend.sh
+```
 
+### Running System Test
+```
+$ sh run-system-test.sh
+```
+
+### Running All Unit Tests (45 Tests)
+```
+$ sh run-all-tests.sh
+```
+
+Notes:
+- Please follow the execution as shown previously. 
+- Each shell command should be executed in a different terminal tab (one for running the web service and the second one for running the Angular App).
+
+## Nice-to-have for later (not implemented due to limited time)
+- API access protection via api keys
+- Dockerization
+- Professional Frontend using Angular
+- More tests such as integration and performance tests
+
+## Screenshots
+
+### All Testings 
+
+#### Lunching All Tests
+![Lunching All Tests](https://github.com/jSchnitzer1/car-rental/blob/master/screenshots/all_tests_1.png)
+
+#### All Tests Results
+![All Tests Results](https://github.com/jSchnitzer1/car-rental/blob/master/screenshots/all_tests_2.png)
+
+### System Test
+
+#### Concurrent Threads & Nonblocking Requests
+![Example_1](https://github.com/jSchnitzer1/car-rental/blob/master/screenshots/system_test_1.png)
+
+![Example_2](https://github.com/jSchnitzer1/car-rental/blob/master/screenshots/system_test_2.png)
 
