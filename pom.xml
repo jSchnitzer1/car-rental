@@ -11,6 +11,5 @@
     <modules>
         <module>car-rental-api</module>
         <module>system-test</module>
-        <module>car-service</module>
     </modules>
 </project>

@@ -6,6 +6,8 @@ The assignment technical file is [here](https://github.com/jSchnitzer1/car-renta
 ## Requirements
 (Open) JDK 14
 
+Spring Boot 5
+
 Maven 3 (https://maven.apache.org/)
 
 An IDE (VS Code or IntelliJ)
