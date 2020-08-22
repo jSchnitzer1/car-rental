@@ -66,6 +66,15 @@ contains
   - Report of number of booked cars per hour from date, to date
   - Report of total payment from date, to date
 
+### H2 Database
+![Database](https://github.com/jSchnitzer1/car-rental/blob/master/data_structure/car-rental.jpg)
+
+The database is designed and implemented using H2 in-memory database. In the resources folder, there are two files:
+1.  schema.sql: a file to be executed by Spring boot to create and inject the database into the project.
+2. data.sql: a file to initialize some data into Customer, Car and Booking tables.
+
+Note: the source design is [here](https://github.com/jSchnitzer1/car-rental/blob/master/data_structure/car-rental.drawio "draw.io DB file") 
+
 
 ### Unit Testing
 There are **45 unit tests** distributed into three testing packages:
