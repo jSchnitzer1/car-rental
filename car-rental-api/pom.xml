@@ -12,7 +12,8 @@
     <artifactId>car-rental-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>car-rental-api</name>
-    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
+    <description>Car Rental API</description>
 
     <properties>
         <java.version>14</java.version>
@@ -80,8 +81,22 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>spring-boot</classifier>
+                            <mainClass>
+                                com.infor.car.api.App
+                            </mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
+        <finalName>car-rental-api</finalName>
     </build>
 
 </project>

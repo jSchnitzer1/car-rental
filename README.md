@@ -3,12 +3,20 @@ Infor Car Rental Manager - With System Testing
 
 The assignment technical file is [here](https://github.com/jSchnitzer1/car-rental/blob/master/Assignment.pdf "Assignment file")
 
+
+## Dockerized
+The project is also dockerized at my dockerhub. You can pull the image using ``docker pull jschnitzer1/car-rental-api:latest``
+
+The **'Build & Run Docker Image'** section describes more....
+
 ## Requirements
 (Open) JDK 14
 
 Spring Boot 5
 
 Maven 3 (https://maven.apache.org/)
+
+Docker Engine
 
 An IDE (VS Code or IntelliJ)
 
@@ -123,9 +131,41 @@ Notes:
 - Please follow the execution as shown previously. 
 - Each shell command should be executed in a different terminal tab (one for running the web service and the second one for running the Angular App).
 
+## Build & Run Docker Image
+First of all, you need to ensure docker engine is installed in your OS. Please check: ``https://docs.docker.com/engine/install/`` for how to install it.
+Then go to the API home directory using ``cd car-rental/car-rental-api/``
+
+**NOTE:** if you just want to pull the image and consume it, you can ignore the next two steps and move directly to **'Pull & Run API Image'** section
+
+To be able to build the image, we need also to have the Dockerfile for the API module. 
+
+### Building the docker image
+In the ``docker_shells`` folder, just run the ``build-docker-image-for-api.sh`` file as the following:
+
+```
+$ sh build-docker-image-for-api.sh
+```
+
+### Push Into DockerHub
+If you want to deploy this API as image in your DockerHub, you can check ``push-api-image-in-dockerhub`` file. 
+Do not forget to change ``jschnitzer1`` (my DockerHub Account) to yours and then run the file:
+```
+$ sh push-api-image-in-dockerhub.sh
+```
+
+### Pull & Run API Image
+As the image is pushed into DockerHub, you can pull and run the image:
+```
+$ sh download-and-run-dockerhub-api-image.sh
+```
+
+Now we can test the running image from PostMan (the image is running on external port of 9090 and the internal tomcat port is 8080)
+
+![Testing Dockerized API](https://github.com/jSchnitzer1/car-rental/blob/master/screenshots/test_api_from_running_docker.png)
+
 ## Nice-to-have for later (not implemented due to limited time)
 - API access protection via api keys
-- Dockerization
+- Deploy into Kubernetes
 - Professional Frontend using Angular
 - More tests such as integration and performance tests
 
