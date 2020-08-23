@@ -16,7 +16,7 @@ Spring Boot 5
 
 Maven 3 (https://maven.apache.org/)
 
-Docker Engine
+Docker Engine (https://docs.docker.com/engine/install/)
 
 An IDE (VS Code or IntelliJ)
 
@@ -76,6 +76,8 @@ contains
 
 ### H2 Database
 ![Database](https://github.com/jSchnitzer1/car-rental/blob/master/data_structure/car-rental.jpg)
+
+Note: H2 Database is selected for this project as it can run in the memory without any prerequisite such as installing SQL engine.
 
 The database is designed and implemented using H2 in-memory database. In the resources folder, there are two files:
 1.  schema.sql: a file to be executed by Spring boot to create and inject the database into the project.
