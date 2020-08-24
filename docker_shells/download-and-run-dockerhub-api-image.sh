@@ -1,1 +1,1 @@
-docker pull jschnitzer1/car-rental-api:latest && docker run -p 9090:8080 jschnitzer1/car-rental-api:latest
+cd car-rental-api/ && docker pull jschnitzer1/car-rental-api:latest && docker run -p 9090:8080 jschnitzer1/car-rental-api:latest

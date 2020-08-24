@@ -135,7 +135,7 @@ Notes:
 
 ## Build & Run Docker Image
 First of all, you need to ensure docker engine is installed in your OS. Please check: ``https://docs.docker.com/engine/install/`` for how to install it.
-Then go to the API home directory using ``cd car-rental/car-rental-api/``
+Then go to the project home directory using ``cd car-rental/``
 
 **NOTE:** if you just want to pull the image and consume it, you can ignore the next two steps and move directly to **'Pull & Run API Image'** section
 
@@ -145,24 +145,31 @@ To be able to build the image, we need also to have the Dockerfile for the API m
 In the ``docker_shells`` folder, just run the ``build-docker-image-for-api.sh`` file as the following:
 
 ```
-$ sh build-docker-image-for-api.sh
+$ sh docker_shells/build-docker-image-for-api.sh
 ```
 
 ### Push Into DockerHub
 If you want to deploy this API as image in your DockerHub, you can check ``push-api-image-in-dockerhub`` file. 
 Do not forget to change ``jschnitzer1`` (my DockerHub Account) to yours and then run the file:
 ```
-$ sh push-api-image-in-dockerhub.sh
+$ sh docker_shells/push-api-image-in-dockerhub.sh
 ```
 
 ### Pull & Run API Image
 As the image is pushed into DockerHub, you can pull and run the image:
 ```
-$ sh download-and-run-dockerhub-api-image.sh
+$ sh docker_shells/download-and-run-dockerhub-api-image.sh
 ```
 
 Now we can test the running image from PostMan (the image is running on external port of 9090 and the internal tomcat port is 8080)
 
+### Run Docker Compose
+You can also run docker compose file ``docker-compose.yaml`` as the following:
+```
+$ sh docker_shells/run-docker-compose.sh 
+```
+
+#### Testing Working Docker Image (at PostMan)
 ![Testing Dockerized API](https://github.com/jSchnitzer1/car-rental/blob/master/screenshots/test_api_from_running_docker.png)
 
 ## Nice-to-have for later (not implemented due to limited time)

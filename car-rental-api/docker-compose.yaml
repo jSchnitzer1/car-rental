@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  car-rental-api-container:
+    image: car-rental-api:1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/car-rental-api-compose-app
+    ports:
+      - "9090:8080"

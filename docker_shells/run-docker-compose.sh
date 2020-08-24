@@ -1,0 +1,1 @@
+cd car-rental-api/ && docker-compose up
