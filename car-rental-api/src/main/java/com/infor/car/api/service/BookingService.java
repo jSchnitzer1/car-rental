@@ -29,14 +29,18 @@ import java.util.*;
 public class BookingService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BookingService.class);
 
-    @Autowired
-    private BookingRepository bookingRepository;
+    private final BookingRepository bookingRepository;
+
+    private final CarRepository carRepository;
+
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    private CarRepository carRepository;
-
-    @Autowired
-    private CustomerRepository customerRepository;
+    public BookingService(BookingRepository bookingRepository, CarRepository carRepository, CustomerRepository customerRepository) {
+        this.bookingRepository = bookingRepository;
+        this.carRepository = carRepository;
+        this.customerRepository = customerRepository;
+    }
 
 
     @Transactional

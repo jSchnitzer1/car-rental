@@ -23,8 +23,12 @@ import java.util.Optional;
 public class CarService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CarController.class);
 
+    private final CarRepository repository;
+
     @Autowired
-    private CarRepository repository;
+    public CarService(CarRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     public List<Car> findAll() {

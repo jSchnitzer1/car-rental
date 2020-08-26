@@ -19,8 +19,12 @@ import java.util.Optional;
 public class CustomerService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
 
+    private final CustomerRepository repository;
+
     @Autowired
-    private CustomerRepository repository;
+    public CustomerService(CustomerRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     public List<Customer> findAll(){
